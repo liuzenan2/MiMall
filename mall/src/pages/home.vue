@@ -10,13 +10,12 @@
 <script>
 import navHeader from '../components/navHeader'
 import navFooter from  '../components/navFooter'
-import Storage from '../storage/index'
 
 export default {
   name:'nav-home',
   components:{navHeader,navFooter},
   mounted() {
-    console.log(Storage.setItem('123',123))
+
   },
 }
 </script>
