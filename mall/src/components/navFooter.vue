@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+
 .footer{
   height: 234px;
   border-top: 4px solid #ff7301;

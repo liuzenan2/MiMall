@@ -11,11 +11,11 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;" v-if="userName">{{userName}}</a>
-           <a href="javascript:;" v-if="!userName" @click="login">登陆</a>
+          <a href="javascript:;" v-if="username">{{username}}</a>
+           <a href="javascript:;" v-if="!username" @click="login">登陆</a>
           <a href="javascript:;">我的订单</a>
           <a href="javascript:;" class="cart" @click="gotoCart">
-            <span class="icon-cart" ></span>购物车
+            <span class="icon-cart" ></span>购物车({{cartCount}})
           </a>
         </div>
       </div>
@@ -36,7 +36,7 @@
                 <li class="product" v-for="(item,index) in phoneList" :key="index">
                   <a :href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
-                        <img :src="item.mainImage" alt="">
+                        <img v-lazy="item.mainImage" alt="">
                     </div>
                     <div class="pro-name">{{item.name}}</div>
                     <div class="pro-price">{{item.price |currency}}</div>
@@ -56,7 +56,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">电视</div>
                     <div class="pro-price">1799</div>
@@ -65,7 +65,7 @@
                  <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">电视cc</div>
                     <div class="pro-price">1799</div>
@@ -74,7 +74,7 @@
                  <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">电视cc</div>
                     <div class="pro-price">1799</div>
@@ -83,7 +83,7 @@
                  <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">电视cc</div>
                     <div class="pro-price">1799</div>
@@ -92,7 +92,7 @@
                  <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">电视cc</div>
                     <div class="pro-price">1799</div>
@@ -101,7 +101,7 @@
                  <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">电视cc</div>
                     <div class="pro-price">1799</div>
@@ -125,11 +125,11 @@
 </template>
 
 <script>
+import {mapState}  from 'vuex'
 export default {
   name: "nav-header", //加载组件的时候引用的name值
   data() {
     return {
-      userName:'',
       phoneList:[]
     }
   },
@@ -153,7 +153,6 @@ export default {
           pageSize:6
         }
       }).then((res)=>{
-       
         this.phoneList=res.list
       })
     },
@@ -163,6 +162,16 @@ export default {
     login(){
       this.$router.push('/login')
     }
+  },
+  computed: {
+    /* 第一种方法 */
+    // userName(){
+    //   return this.$store.state.username; 
+    // },
+    // cartCount(){
+    //   return this.$store.state.cartCount
+    // }
+    ...mapState(['username','cartCount'])
   },
 };
 </script>
@@ -187,6 +196,7 @@ export default {
         width: 110px;
         background-color: #ff6600;
         text-align: center;
+        margin-right:0;
         color: #ffffff;
         .icon-cart {
           @include bgImg(16px,12px,"/imgs/icon-cart-checked.png");

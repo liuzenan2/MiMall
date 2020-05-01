@@ -10,3 +10,11 @@
     background: url($img) no-repeat center;
     background-size: $bkSize;
 }
+
+@mixin position($post:absolute,$top:0,$left:0,$w:100%,$h:100%) {
+    position: $post;
+    top:$top;
+    left: $left;
+    width: $w;
+    height: $h;
+}

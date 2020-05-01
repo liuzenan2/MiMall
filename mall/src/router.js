@@ -2,7 +2,8 @@ import Vue from 'vue'
 import vueRouter from 'vue-router'
 
 Vue.use(vueRouter)
-
+import login from './pages/login'   //登陆
+import register from './pages/register' //注册
 import home from './pages/home'   //首页
 import index from './pages/index'
 import product from './pages/product'  //产品页面
@@ -42,6 +43,16 @@ const router=new vueRouter({
             path:'/cart',
             name:'cart',
             component:cart
+        },
+        {
+            path:'/login',
+            name:'login',
+            component:login
+        },
+        {
+            path:'/register',
+            name:'register',
+            component:register
         },
         {
             path:'/order',
