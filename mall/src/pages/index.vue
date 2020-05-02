@@ -239,8 +239,8 @@ export default {
             el: '.swiper-pagination',
             clickable :true
           },
-          navigation: {
-          nextEl: '.swiper-button-next',
+        navigation: {
+        nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
        },
           loop:true,
@@ -434,13 +434,17 @@ export default {
         this.phoneList =[res.list.slice(0,4),res.list.slice(4,8)] 
       })
       },
-      addCart(){
-        this.showModal=true
-        return
-        // this.axios.post('/carts',{
-        //   productId:id,
-        //   selected: true
-        // })
+      addCart(id){
+        
+        this.axios.post('/carts',{
+          productId:id,
+          selected: true
+        }).then((res)=>{
+          this.showModal=true
+          this.$store.dispatch('saveCartCount',res.cartTotalQuantity)
+        }).catch(()=>{
+          this.showModal=true
+        })
       },
       goTocart(){
         this.$router.push('/cart')

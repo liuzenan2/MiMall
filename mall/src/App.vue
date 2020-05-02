@@ -19,14 +19,14 @@ export default {
   methods: {
      getUser(){
        this.axios.get('/user')
-       .then((res)=>{
+       .then((res={})=>{
         this.$store.dispatch('saveUsername',res.username)
          //把根组件的请求的数据保存到vuex里面
        })
     },
     getcartCount(){
       this.axios.get('/carts/products/sum')
-      .then((res)=>{
+      .then((res=0)=>{
         this.$store.dispatch('saveCartCount',res)
       })
     }
@@ -45,5 +45,6 @@ export default {
 <style lang='scss'>
 @import './assets/scss/reset.scss';
 @import './assets/scss/button.scss';
+
 
 </style>
