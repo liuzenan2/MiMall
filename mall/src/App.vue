@@ -24,6 +24,7 @@ export default {
          //把根组件的请求的数据保存到vuex里面
        })
     },
+    //购物车数量接口
     getcartCount(){
       this.axios.get('/carts/products/sum')
       .then((res=0)=>{
@@ -32,12 +33,14 @@ export default {
     }
   },
   mounted() {
-    this.getUser()
-    this.getcartCount()
+    if(this.$cookie.get('userId')){
+      this.getUser()
+      this.getcartCount()
+    }
+    
     // this.axios.get('/user/login').then((res)=>{
     //   this.res=res
     // })
-
   },
 }
 </script>

@@ -25,6 +25,7 @@
                  <a href="/#/register">注册小米账号</a>
              </div>       
              </div>
+             <div class="clear"></div>
           </div>
       </div>
 
@@ -70,11 +71,13 @@ export default {
                 username,password
             }).then((res)=>{
                 //保存用户ID
-                this.$cookie.set('userId',res.id,{expires:'1M'});
+                this.$cookie.set('userId',res.id,{expires:'Session'});
                 this.$store.dispatch('saveUsername',res.username)
-                this.$router.push('/index')
+                //this.$router.push('/index')
+                this.$router.push({name:'index',params:{
+                    from:'login'
+                }})
             }).catch((req)=>{
-                console.log(req)
                 alert(req.msg)
             })
         }
@@ -94,7 +97,7 @@ export default {
 
     /* 登陆页面的身体样式 */
     .login-body{
-        height:615px;
+        height: 290px;
         width: 100%;
         background-color: #ffffff;
         img{
@@ -102,9 +105,10 @@ export default {
         }
         .container{
             position: relative;
+            
             .login-box{
                 right: 0;
-                top: -420px;
+                top: -320px;
                 position: absolute;
                 width: 410px;
                 height:415px;

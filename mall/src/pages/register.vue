@@ -43,7 +43,7 @@ export default {
                  password,
                  email
              }).then(()=>{
-                 alert('注册成功,3秒后跳转登陆页面')
+                 this.$message.success('注册成功,3秒后跳转登陆页面')
                  setTimeout(() => {
                     this.$router.push('/login') 
                  }, 3000);
@@ -61,7 +61,7 @@ export default {
         height: 100%;
         .register-box{
             @include position(absolute,50%,50%,854px,548px);
-            transform:translate(-50%,-60%);
+            transform:translate(-50%,-50%);
             background-color: #ffffff;
             .wrappir{
                 width: 786px;

@@ -13,6 +13,7 @@
         <div class="topbar-user">
           <a href="javascript:;" v-if="username">{{username}}</a>
            <a href="javascript:;" v-if="!username" @click="login">登陆</a>
+           <a href="javascript:;" v-if="username" @click="logout">退出</a>
           <a href="javascript:;">我的订单</a>
           <a href="javascript:;" class="cart" @click="gotoCart">
             <span class="icon-cart" ></span>购物车({{cartCount}})
@@ -135,6 +136,9 @@ export default {
   },
   mounted() {
    this.getProducList()
+   if(this.$route.params.from==='login'){
+     this.getcartCount()
+   }
   },
   filters:{
     currency(val){
@@ -161,6 +165,20 @@ export default {
     },
     login(){
       this.$router.push('/login')
+    },
+    logout(){
+        this.axios.post('/user/logout').then(()=>{
+          this.$message.success('退出成功')
+          this.$cookie.set('userId','',{expires:'-1'})
+          this.$store.dispatch('saveUsername','');
+          this.$store.dispatch('saveCartCount',0);
+        })
+    },
+    getcartCount(){
+      this.axios.get('/carts/products/sum')
+      .then((res=0)=>{
+        this.$store.dispatch('saveCartCount',res)
+      })
     }
   },
   computed: {
@@ -212,32 +230,6 @@ export default {
       position: relative;
       height: 112px;
      @include flex();
-      .header-logo{
-        display: inline-block;
-        width: 55px;
-        height:55px;
-         background-color: #ff6600;
-        a{
-          display: inline-block;
-          width: 110px;
-          height: 55px;
-          &:before{
-            @include bgImg(55px,55px,'/imgs/mi-logo.png');
-            display: inline-block;
-            content: '';
-            transition: all 1s;
-          }
-          &:after{
-            @include bgImg(55px,55px,'/imgs/mi-home.png');
-            display: inline-block;
-            content: '';
-          }
-          &:hover:before{
-            margin-left: -55px;
-            transition: all .5s;
-          } 
-        }
-      }
     }
   }
 

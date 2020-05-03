@@ -6,7 +6,8 @@ import axios from 'axios'   //引入axios
 import VueAxios from 'vue-axios'  //把axios挂载到实例上
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
-
+import {Message}  from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 //根据前端跨域方式做调整 /a/b  /api/a/b=>/a/b
 // axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5ea82829b91d8b713ebf2097/example'
 //地址接口，隐藏真实的地址，写成/api
@@ -26,6 +27,7 @@ axios.interceptors.response.use(function(response){ //response是axios提供的�
         return Promise.reject(res)   
          //跳转到登陆页面,这里不是在app.vue页面，没有this，所有用window.location.href来进行一个跳转
       }else{
+        Message.warning(res.msg)
         return Promise.reject(res)   
       }
 })
@@ -41,7 +43,9 @@ Vue.use(VueLazyLoad,{
 /* vue-cookie */
 Vue.use(VueCookie)
 
-
+/* element-ul全局使用 */
+ Vue.component(Message)
+Vue.prototype.$message=Message
 
 new Vue({
   store,

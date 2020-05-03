@@ -41,12 +41,12 @@ export default {
         //确定按钮
         confirmBtn:{
             type:String,
-            dafault:'确定'
+            default:'确定'
         },
         //取消按钮
         cancelBtn:{
              type:String,
-            dafault:'取消'
+             dafault:'取消'
         },
         showModal:{
             type:Boolean
