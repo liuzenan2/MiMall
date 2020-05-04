@@ -71,7 +71,7 @@ export default {
                 username,password
             }).then((res)=>{
                 //保存用户ID
-                this.$cookie.set('userId',res.id,{expires:'Session'});
+                this.$cookie.set('userId',res.id,{expires:'1M'});
                 this.$store.dispatch('saveUsername',res.username)
                 //this.$router.push('/index')
                 this.$router.push({name:'index',params:{

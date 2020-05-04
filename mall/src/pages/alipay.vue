@@ -1,12 +1,42 @@
 <template>
-  <div>
-      alipay
+  <div class="alipay">
+    <loading v-if="Loading"></loading>
+      <div leave-class="form" v-html="content">
+          
+      </div>
   </div>
 </template>
 
 <script>
+import Loading from '../components/Loading'
 export default {
-    name:'alipay'
+    name:'alipay',
+    components:{Loading},
+    data() {
+      return {
+        orderId:this.$route.query.orderId,
+        content:'',
+        Loading:true
+      }
+    },
+    mounted() {
+      this.paySubmit()
+    },
+    methods: {
+      paySubmit(){
+        this.axios.post('/pay',{
+          orderId:this.orderId,
+          orderName:'123', //扫码支付时订单名称
+          amount:100, //单位元
+          payType:1, //1支付宝，2微信
+        }).then((res)=>{
+          this.content=res.content;
+          setTimeout(() => {
+            document.forms[0].submit()
+          }, 100);
+        })
+      }
+    },
 }
 </script>
 

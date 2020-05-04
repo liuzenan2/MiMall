@@ -73,14 +73,15 @@ const router=new vueRouter({
                     path:'orderConfim',
                     name:'orderComfim',
                     component:orderConfim
-                }
+                },
+                {
+                    path:'alipay',
+                    name:'alipay',
+                    component:alipay
+                },
             ]
         },
-        {
-            path:'/alipay',
-            name:'alipay',
-            component:alipay
-        }
+       
     ]
 })
 

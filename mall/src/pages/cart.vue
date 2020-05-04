@@ -122,7 +122,6 @@ export default {
 
     order(){
       let check=this.list.every(item=>!item.productSelected)
-      console.log(check)
       if(check){
         this.$message.warning('最少要选中一件商品')
       }else{

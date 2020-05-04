@@ -30,6 +30,10 @@ axios.interceptors.response.use(function(response){ //response是axios提供的�
         Message.warning(res.msg)
         return Promise.reject(res)   
       }
+},(error)=>{       //第二个回调拦截的是HTTP请求，拦截的是请求的报错
+let res=error.response
+    Message.warning(res.data.Message)
+    return Promise.reject(error)
 })
 
 
