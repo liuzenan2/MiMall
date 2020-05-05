@@ -1,5 +1,6 @@
 <template>
   <div class="product">
+    <div class="container">
       <productParam :title="product.name">
         <template v-slot:buy>
           <button class="btn" @click="buy">
@@ -50,6 +51,7 @@
       </div>
     </div>
   </div>
+      </div>
       </div>
   </div>
 </template>
@@ -193,12 +195,14 @@ export default {
          }
        }
         .video-bg{
-          @include bgImg(100%,400px,'/imgs/product/gallery-1.png');
+         
+          height: 400px;
+          background: url('/imgs/product/gallery-1.png') center;
+          background-size: contain;
           cursor: pointer;
         }
         /* 视频的样式 */
        .video-box{
-        
          .overlay{
            @include position(fixed);
             background-color: rgba(0,0,0,.5);

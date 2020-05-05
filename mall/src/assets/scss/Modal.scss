@@ -1,20 +1,22 @@
 .modal{
     @include position(fixed);
     z-index: 15;
-    transition: all 1s;
-    // &.slide-enter-active{
-    // top: 0;
-    // }
-    // &.slide-leave-active{
-    //     top: -100%;
-    //   }
-    // &.slide-enter{
-    //     top: -100%;
-    //   }
+    transition: all 0.5s;
+    
   .mask{
     @include position(fixed);
     background-color: #000000;
     background: rgba(0,0,0,0.5);
+  }
+  &.slide-enter-active{
+    top:0;
+  }
+  &.slide-leave-active{
+    top:-100%;
+  }
+  &.slide-enter{
+    top:-100%;
+  }
     .modal-dialog{ 
       @include position(absolute,40%,50%,660px,auto);
       background-color: #ffffff;
@@ -50,6 +52,4 @@
           background-color: #f5f5f5;
       }
   }
-  }
-  
 }

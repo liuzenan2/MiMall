@@ -1,5 +1,10 @@
 <template>
   <div class="orderConfim">
+    <orderHeader title="订单确认">
+       <template v-slot:tip>
+        <span>请认真填写收货地址</span>
+      </template>
+    </orderHeader>
       <div class="wrapper">
         <div class="container">
           <div class="checkout-wrap">
@@ -165,9 +170,10 @@
 
 <script>
 import modal from '../components/Modal'
+import orderHeader from '../components/orderHeader'
 export default {
     name:'orderConfim',
-    components:{modal},
+    components:{modal,orderHeader},
     data() {
       return {
         list:[],//收获地址列表

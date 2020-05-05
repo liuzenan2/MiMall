@@ -1,5 +1,10 @@
 <template>
   <div class="order-pay">
+    <orderHeader title="订单支付">
+       <template v-slot:tip>
+        <span>请谨防钓鱼链接或诈骗电话</span>
+      </template>
+    </orderHeader>
     <div class="wrapper">
       <div class="container">
         <div class="order-wrap">
@@ -72,9 +77,10 @@
 import QRCode from 'qrcode'
 import weixinCode from '../components/weixinCode'
 import Modal from '../components/Modal'
+import orderHeader from '../components/orderHeader'
 export default {
     name:'orderPay',
-    components:{weixinCode,Modal},
+    components:{weixinCode,Modal,orderHeader},
     data() {
       return {
         addressInfo:null, //收货人的地址信息

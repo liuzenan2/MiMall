@@ -14,7 +14,7 @@
           <a href="javascript:;" v-if="username">{{username}}</a>
            <a href="javascript:;" v-if="!username" @click="login">登陆</a>
            <a href="javascript:;" v-if="username" @click="logout">退出</a>
-          <a href="javascript:;">我的订单</a>
+          <a href="javascript:;" @click="order">我的订单</a>
           <a href="javascript:;" class="cart" @click="gotoCart">
             <span class="icon-cart" ></span>购物车({{cartCount}})
           </a>
@@ -150,6 +150,9 @@ export default {
     }
   },
   methods: {
+    order(){
+      this.$router.push('/order/orderList')
+    },
     getProducList(){
       this.axios.get('/products',{
         params:{

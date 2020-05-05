@@ -46,11 +46,10 @@ export default {
         height:70px;
         line-height: 70px;
         border-top : 1px solid #e5e5e5;
-        z-index: 30;
+        z-index: 10;
         &.is_fixed{
            position: fixed;
            top: 0;
-           width: 100%;
            background-color: #ffffff;
            box-shadow: 0 5px 5px #cccccc;
         }
@@ -61,10 +60,12 @@ export default {
                font-size: 18px;
                color: #333333;
                font-weight: bold;
+               margin-left: 20px;
            }
 
            .productParam-param{
                font-size: 14px;
+               margin-right: 20px;
               
             a{
                  color: #666666;

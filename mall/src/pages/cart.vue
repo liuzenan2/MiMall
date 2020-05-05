@@ -76,6 +76,7 @@ export default {
     methods: {
       getCartList(){
         this.axios.get('/carts').then((res)=>{
+          console.log(res)
         this.render(res)
         })
       },
@@ -90,6 +91,7 @@ export default {
            this.axios.delete(`/carts/${id}`).then((res)=>{  
              this.$message.success('删除成功')  
              this.render(res)
+            this.$store.dispatch('saveCartCount',res.cartTotalQuantity)
         })
         }else{
           return
