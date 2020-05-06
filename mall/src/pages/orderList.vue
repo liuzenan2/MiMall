@@ -128,6 +128,9 @@ export default {
 .orderList{
   .wrapper{
     .order{
+      &:first-child{
+        margin-top: 20px;
+      }
       border: 1px solid #cccccc;
       padding: 20px 30px;
       margin-bottom: 20px;
